@@ -1,0 +1,35 @@
+version: '3.7'
+services:
+  mosquitto:
+    image: davesilva/mosquitto
+  snips-asr: &snips-common
+    image: davesilva/snips:0.63.3
+    command: snips-asr
+    build:
+      context: .
+    volumes:
+      - type: tmpfs
+        target: /usr/share/snips
+      - "./config/snips.toml:/etc/snips.toml"
+      - "./assistant:/usr/share/snips/assistant"
+    depends_on:
+      - mosquitto
+    environment:
+      - TZ=America/New_York
+  snips-dialogue:
+    <<: *snips-common
+    command: snips-dialogue
+  snips-hotword:
+    <<: *snips-common
+    command: snips-hotword
+  snips-nlu:
+    <<: *snips-common
+    command: snips-nlu
+  snips-tts:
+    <<: *snips-common
+    command: snips-tts
+  snips-pegasus:
+    <<: *snips-common
+    command: snips-pegasus
+    ports:
+      - "8080:8080"

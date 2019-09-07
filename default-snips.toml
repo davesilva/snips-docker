@@ -1,0 +1,7 @@
+[snips-common]
+mqtt = "mosquitto:1883"
+
+[snips-pegasus]
+address = "0.0.0.0:8080"
+tls_certificate_chain = ""
+tls_private_key = ""
