@@ -1,7 +1,6 @@
 #!/bin/bash
 
-export DOCKER_CONFIG=$HOME/.docker
 mkdir -p $HOME/.docker
 echo '{ "experimental": "enabled" }' > $HOME/.docker/config.json
 
-./docker-xbuild . "$IMAGE_NAME"
+DOCKER_CONFIG=$HOME/.docker ./docker-xbuild . "$IMAGE_NAME"
