@@ -9,5 +9,6 @@ curl -L https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/qemu-
 curl -L https://raw.githubusercontent.com/davesilva/docker-xbuild/master/bin/build > docker-xbuild
 chmod +x docker-xbuild
 
+export DOCKER_CONFIG=$HOME/.docker
 mkdir -p $HOME/.docker
 echo '{ "experimental": "enabled" }' > $HOME/.docker/config.json
