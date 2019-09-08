@@ -1,6 +1,8 @@
 #!/bin/bash
 
+apt-get update
 apt-get install -y jq
+apt-get upgrade -y docker
 
 # Downloads a local copy of qemu on docker-hub build machines
 curl -L https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/qemu-3.0.0+resin-arm.tar.gz | tar zxvf - -C . && mv qemu-3.0.0+resin-arm/qemu-arm-static .
@@ -13,4 +15,4 @@ export DOCKER_CONFIG=$HOME/.docker
 mkdir -p $HOME/.docker
 echo '{ "experimental": "enabled" }' > $HOME/.docker/config.json
 
-docker version
+docker version --config $HOME/.docker/config.json
